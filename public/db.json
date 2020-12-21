@@ -1,0 +1,24 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "title": "Green T-Shirt",
+            "price": 10.50,
+            "sku": 1234567543,
+            "description": "Army Camo shirt",
+            "availableSizes": ["M", "L", "XL"],
+            "isFreeShipping": true,
+            "img": "army_green.png"
+        },
+        {
+            "id":2,
+            "title": "Blue T-Shirt",
+            "price": 14.99,
+            "sku": 4567654322,
+            "description": "AirForce Camo shirt",
+            "availableSizes": ["S", "M"],
+            "isFreeShipping": true,
+            "img": "AIrForce.png"
+        }
+    ]
+}
