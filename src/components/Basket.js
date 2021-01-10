@@ -1,11 +1,7 @@
 import React, { Component } from "react";
+import util from "../util";
 
-class Basket extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
+export default class Basket extends Component {
   render() {
     const { cartItems } = this.props;
     return (
@@ -15,12 +11,13 @@ class Basket extends Component {
         ) : (
           <div> You Have {cartItems.length} Products in the basket. </div>
         )}
-        {cartItems.length >= 0 && (
+        {cartItems.length > 0 && (
           <div>
             <ul>
               {cartItems.map((item) => (
                 <li key={item.id}>
-                  <b>{item.title}</b> X {item.count} ||
+                  <b>{item.title}</b>X {item.count} = {item.price * item.count}
+                  ||
                   <button
                     className="btn btn-danger"
                     onClick={(e) => this.props.handleRemoveFromCart(e, item)}
@@ -30,11 +27,19 @@ class Basket extends Component {
                 </li>
               ))}
             </ul>
+            Total:{" "}
+            {util.formatCurrency(
+              cartItems.reduce((a, c) => a + c.price * c.count, 0)
+            )}
+            <button
+              className="btn btn-primary"
+              onClick={() => alert("Checkout Needs to be implemented")}
+            >
+              Checkout
+            </button>
           </div>
         )}
       </div>
     );
   }
 }
-
-export default Basket;

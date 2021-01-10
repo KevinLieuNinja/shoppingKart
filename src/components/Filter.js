@@ -1,12 +1,8 @@
 import React, { PureComponent } from "react";
+import { connect } from "react-redux";
+import { filterProducts } from "../action/productActions";
 
 class Filter extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   render() {
     return (
       <div className="row">
@@ -31,7 +27,9 @@ class Filter extends PureComponent {
             <select
               className="form-control"
               value={this.props.size}
-              onChange={this.props.handleChangeSize}
+              onChange={(e) =>
+                this.props.filterProducts(this.props.products, e.target.value)
+              }
             >
               <option value="">All</option>
               <option value="s">S</option>
@@ -45,5 +43,9 @@ class Filter extends PureComponent {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  product: state.products.items,
+  size: state.products.size,
+});
 
-export default Filter;
+export default connect(mapStateToProps, { filterProducts })(Filter);
